@@ -1,4 +1,5 @@
-﻿namespace WorkoutTracker.Models
+﻿using System.Text.Json.Serialization;
+namespace WorkoutTracker.Models
 {
     public class WorkoutLog
     {
@@ -6,6 +7,7 @@
         public DateTime Date { get; set; } = DateTime.UtcNow;
 
         public int UserId { get; set; }
+        [JsonIgnore]
         public User? User { get; set; }
 
         public List<WorkoutSet> Sets { get; set; } = new();

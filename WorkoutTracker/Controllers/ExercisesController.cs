@@ -75,7 +75,7 @@ namespace WorkoutTracker.Controllers
             _context.Exercises.Add(exercise);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetExercise", new { id = exercise.Id }, exercise);
+            return CreatedAtAction(nameof(GetExercise), new { id = exercise.Id }, exercise);
         }
 
         // DELETE: api/Exercises/5
