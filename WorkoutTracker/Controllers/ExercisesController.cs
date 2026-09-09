@@ -55,10 +55,9 @@ namespace WorkoutTracker.Controllers
             var existingExercise = await _context.Exercises.FindAsync(id);
             if (existingExercise == null)
             {
-                return NotFound(); // HTTP 404, ha nem létezik az adatbázisban
+                return NotFound(); 
             }
 
-            // Átírjuk a mezőket
             existingExercise.Name = exercise.Name;
             existingExercise.Category = exercise.Category;
 
@@ -67,8 +66,7 @@ namespace WorkoutTracker.Controllers
             return NoContent();
         }
 
-        // POST: api/Exercises
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+       
         [HttpPost]
         public async Task<ActionResult<Exercise>> PostExercise(Exercise exercise)
         {
@@ -78,7 +76,7 @@ namespace WorkoutTracker.Controllers
             return CreatedAtAction(nameof(GetExercise), new { id = exercise.Id }, exercise);
         }
 
-        // DELETE: api/Exercises/5
+        
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteExercise(int id)
         {

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WorkoutTracker.Data;
 using WorkoutTracker.Models;
@@ -48,7 +47,7 @@ namespace WorkoutTracker.Controllers
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == dto.Username);
 
-            
+
             if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
             {
                 return Unauthorized("Hibás felhasználónév vagy jelszó!");

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WorkoutTracker.Data;
 using WorkoutTracker.Models;
@@ -26,6 +21,17 @@ namespace WorkoutTracker.Controllers
         public async Task<ActionResult<IEnumerable<WorkoutLog>>> GetWorkoutLogs()
         {
             return await _context.WorkoutLogs
+                .Include(w => w.Sets)
+                    .ThenInclude(s => s.Exercise)
+                .ToListAsync();
+        }
+
+        // GET: api/WorkoutLogs/user/1
+        [HttpGet("user/{userId}")]
+        public async Task<ActionResult<IEnumerable<WorkoutLog>>> GetUserWorkoutLogs(int userId)
+        {
+            return await _context.WorkoutLogs
+                .Where(w => w.UserId == userId)
                 .Include(w => w.Sets)
                     .ThenInclude(s => s.Exercise)
                 .ToListAsync();
