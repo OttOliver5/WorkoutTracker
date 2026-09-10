@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Tracker</title>
+</head>
+<body>
+    <h1>Workout Tracker - Gyakorlatok</h1>
+
+    <h2>Új gyakorlat rögzítése</h2>
+    <form id="exerciseForm">
+        <label>Név: <input type="text" id="exerciseName" required></label><br><br>
+        <label>Kategória: <input type="text" id="exerciseCategory" required></label><br><br>
+        <button type="submit" id="submitBtn">Mentés</button>
+    </form>
+
+    <h2>Gyakorlatok listája</h2>
+    <table border="1" cellpadding="6">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Név</th>
+                <th>Kategória</th>
+                <th>Művelet</th>
+            </tr>
+        </thead>
+        <tbody id="exerciseTableBody">
+        </tbody>
+    </table>
+
+    <script src="exercises.js"></script>
+</body>
+</html>

@@ -5,7 +5,7 @@ namespace WorkoutTracker.Models
     {
         public int Id { get; set; }
         public DateTime Date { get; set; } = DateTime.UtcNow;
-
+        public string Notes { get; set; } = string.Empty;
         public int UserId { get; set; }
         [JsonIgnore]
         public User? User { get; set; }

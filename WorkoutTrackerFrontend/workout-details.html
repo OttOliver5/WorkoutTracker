@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Tracker - Edzés részletei</title>
+</head>
+<body>
+
+    <p><a href="index.html">&larr; Vissza az edzésekhez</a></p>
+
+    <h1 id="workoutTitle">Edzés részletei</h1>
+    <p id="workoutDateInfo"></p>
+
+    <hr>
+
+    <h2>Új szett hozzáadása</h2>
+    <form id="setForm">
+        <label>Gyakorlat:
+            <select id="exerciseSelect" required>
+                <option value="">-- Válassz gyakorlatot --</option>
+            </select>
+        </label><br><br>
+
+        <label>Súly (kg): <input type="number" step="0.5" id="setWeight" required></label><br><br>
+        <label>Ismétlés: <input type="number" id="setReps" required></label><br><br>
+
+        <button type="submit">Szett mentése</button>
+    </form>
+
+    <h2>Elvégzett szettek</h2>
+    <table border="1" cellpadding="6">
+        <thead>
+            <tr>
+                <th>Gyakorlat</th>
+                <th>Súly (kg)</th>
+                <th>Ismétlés</th>
+                <th>Művelet</th>
+            </tr>
+        </thead>
+        <tbody id="setsTableBody">
+        </tbody>
+    </table>
+
+    <script src="workout-details.js"></script>
+</body>
+</html>
