@@ -36,7 +36,7 @@ async function loadDetails() {
     const answer = await fetch(`${BASE_URL}/WorkoutLogs/${workoutLogId}`);
     const training = await answer.json();
 
-    document.getElementById("workoutTitle").textContent = `Edzés #${training.id}`;
+    document.getElementById("workoutTitle").textContent = training.name ? training.name : `Edzés #${training.id}`;
     document.getElementById("workoutDateInfo").textContent = `Dátum: ${new Date(training.date).toLocaleString()}`;
 
     const tbody = document.getElementById("setsTableBody");
@@ -52,7 +52,7 @@ async function loadDetails() {
                     <td><strong>${exerciseName}</strong></td>
                     <td>${set.weight} kg</td>
                     <td>${set.reps} ismétlés</td>
-                    <td><button onclick="szettTorles(${set.id})">Törlés</button></td>
+                    <td><button onclick="deleteSet(${set.id})">Törlés</button></td>
                 </tr>
             `;
         }

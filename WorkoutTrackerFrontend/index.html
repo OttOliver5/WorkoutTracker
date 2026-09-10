@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Tracker</title>
+</head>
+<body>
+
+    <div>
+        <h1>Edzéseim</h1>
+        <button onclick="toggleMenu()">👤 <span id="usernameDisplay"></span> ▼</button>
+        <div id="dropdownMenu" style="display:none;">
+            <a href="exercises.html">💪 Gyakorlat szerkesztő</a><br>
+            <button onclick="logout()">🚪 Kijelentkezés</button>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>Új edzés hozzáadása</h2>
+    <form id="workoutForm">
+        <label>Név: <input type="text" id="workoutName" required></label><br><br>
+        <label>Dátum: <input type="datetime-local" id="workoutDate" required></label><br><br>
+        <label>Megjegyzés: <input type="text" id="workoutNotes"></label><br><br>
+        <button type="submit">Mentés</button>
+    </form>
+
+    <hr>
+
+    <h2>Edzések listája</h2>
+    <p id="emptyMessage" style="display:none;">Még nincs rögzített edzésed – adj hozzá egyet!</p>
+    <table id="workoutTable" border="1" cellpadding="6">
+        <thead>
+            <tr>
+                <th>Név</th>
+                <th>Dátum</th>
+                <th>Megjegyzés</th>
+                <th>Műveletek</th>
+            </tr>
+        </thead>
+        <tbody id="workoutTableBody">
+        </tbody>
+    </table>
+
+    <script src="index.js"></script>
+</body>
+</html>

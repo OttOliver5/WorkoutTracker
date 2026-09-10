@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Tracker - Bejelentkezés</title>
+</head>
+<body>
+
+    <h1>Workout Tracker</h1>
+
+    <button onclick="showForm('login')">Bejelentkezés</button>
+    <button onclick="showForm('register')">Regisztráció</button>
+
+    <hr>
+
+    <div id="loginSection">
+        <h2>Bejelentkezés</h2>
+        <form id="loginForm">
+            <label>Felhasználónév: <input type="text" id="loginUsername" required></label><br><br>
+            <label>Jelszó: <input type="password" id="loginPassword" required></label><br><br>
+            <button type="submit">Bejelentkezés</button>
+        </form>
+    </div>
+
+    <div id="registerSection" style="display:none;">
+        <h2>Regisztráció</h2>
+        <form id="registerForm">
+            <label>Felhasználónév: <input type="text" id="registerUsername" required></label><br><br>
+            <label>Email: <input type="email" id="registerEmail" required></label><br><br>
+            <label>Jelszó: <input type="password" id="registerPassword" required></label><br><br>
+            <button type="submit">Regisztráció</button>
+        </form>
+    </div>
+
+    <p id="message"></p>
+
+    <script src="login.js"></script>
+</body>
+</html>

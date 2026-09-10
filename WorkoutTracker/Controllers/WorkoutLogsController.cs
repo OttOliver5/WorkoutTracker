@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WorkoutTracker.Data;
 using WorkoutTracker.Models;
@@ -70,6 +70,7 @@ namespace WorkoutTracker.Controllers
                 return NotFound();
             }
 
+            existingLog.Name = workoutLog.Name;
             existingLog.Date = workoutLog.Date;
             existingLog.UserId = workoutLog.UserId;
 
