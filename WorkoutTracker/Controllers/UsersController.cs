@@ -56,6 +56,23 @@ namespace WorkoutTracker.Controllers
             return Ok(new { message = "Sikeres bejelentkezés!", userId = user.Id, username = user.Username });
         }
 
+        // PUT: api/Users/change-password
+        [HttpPut("change-password")]
+        public async Task<IActionResult> ChangePassword(ChangePasswordDto dto)
+        {
+            var user = await _context.Users.FindAsync(dto.UserId);
+
+            if (user == null || !BCrypt.Net.BCrypt.Verify(dto.CurrentPassword, user.PasswordHash))
+            {
+                return BadRequest("Hibás jelenlegi jelszó!");
+            }
+
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.NewPassword);
+            await _context.SaveChangesAsync();
+
+            return Ok("Jelszó sikeresen megváltoztatva!");
+        }
+
         // GET: api/Users (Felhasználók listázása)
         [HttpGet]
         public async Task<ActionResult<IEnumerable<object>>> GetUsers()

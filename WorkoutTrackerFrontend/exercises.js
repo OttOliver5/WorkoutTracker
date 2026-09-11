@@ -14,8 +14,10 @@ async function load() {
                 <td>${item.id}</td>
                 <td>${item.name}</td>
                 <td>${item.category}</td>
-                <button onclick="editSelection(${item.id}, '${item.name}', '${item.category}')">Szerkesztés</button>
-                <td><button onclick="deleteItem(${item.id})">Törlés</button></td>
+                <td>
+                    <button class="btn btn-sm btn-warning me-1" onclick="editSelection(${item.id}, '${item.name}', '${item.category}')">Szerkesztés</button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteItem(${item.id})">Törlés</button>
+                </td>
             </tr>
         `;
     }
