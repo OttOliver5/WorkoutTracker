@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WorkoutTracker.Data;
 using WorkoutTracker.Models;
@@ -17,7 +17,7 @@ namespace WorkoutTracker.Controllers
             _context = context;
         }
 
-        // POST: api/Users/register (REGISZTRÁCIÓ)
+        // POST: api/Users/register
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDto dto)
         {
@@ -41,12 +41,11 @@ namespace WorkoutTracker.Controllers
             return Ok(new { message = "Sikeres regisztráció!", userId = user.Id });
         }
 
-        // POST: api/Users/login (BEJELENTKEZÉS)
+        // POST: api/Users/login
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto dto)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == dto.Username);
-
 
             if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
             {
@@ -73,7 +72,7 @@ namespace WorkoutTracker.Controllers
             return Ok("Jelszó sikeresen megváltoztatva!");
         }
 
-        // GET: api/Users (Felhasználók listázása)
+        // GET: api/Users
         [HttpGet]
         public async Task<ActionResult<IEnumerable<object>>> GetUsers()
         {

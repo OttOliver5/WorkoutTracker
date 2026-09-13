@@ -1,12 +1,12 @@
-const URL = "https://localhost:7083/api/Exercises"; 
+const URL = "https://localhost:7083/api/Exercises";
 let editingId = null;
 
 async function load() {
-    const answer = await fetch(URL);          
-    const data = await answer.json();        
+    const answer = await fetch(URL);
+    const data = await answer.json();
 
     const table = document.getElementById("exerciseTableBody");
-    table.innerHTML = "";                   
+    table.innerHTML = "";
 
     for (const item of data) {
         table.innerHTML += `

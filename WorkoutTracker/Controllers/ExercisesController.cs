@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WorkoutTracker.Data;
 using WorkoutTracker.Models;
@@ -55,7 +50,7 @@ namespace WorkoutTracker.Controllers
             var existingExercise = await _context.Exercises.FindAsync(id);
             if (existingExercise == null)
             {
-                return NotFound(); 
+                return NotFound();
             }
 
             existingExercise.Name = exercise.Name;
@@ -66,7 +61,7 @@ namespace WorkoutTracker.Controllers
             return NoContent();
         }
 
-       
+
         [HttpPost]
         public async Task<ActionResult<Exercise>> PostExercise(Exercise exercise)
         {
@@ -76,7 +71,7 @@ namespace WorkoutTracker.Controllers
             return CreatedAtAction(nameof(GetExercise), new { id = exercise.Id }, exercise);
         }
 
-        
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteExercise(int id)
         {
