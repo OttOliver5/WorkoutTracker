@@ -1,11 +1,11 @@
-const BASE_URL = "https://localhost:7083/api"; 
+const BASE_URL = "https://localhost:7083/api";
 
 const urlParams = new URLSearchParams(window.location.search);
 const workoutLogId = urlParams.get("id");
 
 let allExercises = [];
 
-document.addEventListener("DOMContentLoaded", async () => {
+async function init() {
     if (!workoutLogId) {
         alert("Nincs kiválasztva edzés!");
         window.location.href = "index.html";
@@ -16,8 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await loadDetails();
 
     document.getElementById("setForm").onsubmit = newSetSave;
-});
-
+}
 
 async function loadExercise() {
     const answer = await fetch(`${BASE_URL}/Exercises`);
@@ -30,7 +29,6 @@ async function loadExercise() {
         select.innerHTML += `<option value="${x.id}">${x.name} (${x.category})</option>`;
     }
 }
-
 
 async function loadDetails() {
     const answer = await fetch(`${BASE_URL}/WorkoutLogs/${workoutLogId}`);
@@ -45,7 +43,15 @@ async function loadDetails() {
     if (training.sets) {
         for (const set of training.sets) {
             const x = allExercises.find(g => g.id === set.exerciseId);
-            const exerciseName = x ? x.name : (set.exercise ? set.exercise.name : `Gyakorlat #${set.exerciseId}`);
+
+            let exerciseName;
+            if (x) {
+                exerciseName = x.name;
+            } else if (set.exercise) {
+                exerciseName = set.exercise.name;
+            } else {
+                exerciseName = `Gyakorlat #${set.exerciseId}`;
+            }
 
             tbody.innerHTML += `
                 <tr>
@@ -58,7 +64,6 @@ async function loadDetails() {
         }
     }
 }
-
 
 async function newSetSave(event) {
     event.preventDefault();
@@ -82,11 +87,12 @@ async function newSetSave(event) {
     loadDetails();
 }
 
-
-async function deleteSet(szettId) {
-    await fetch(`${BASE_URL}/WorkoutSets/${szettId}`, {
+async function deleteSet(setId) {
+    await fetch(`${BASE_URL}/WorkoutSets/${setId}`, {
         method: "DELETE"
     });
 
     loadDetails();
 }
+
+document.addEventListener("DOMContentLoaded", init);

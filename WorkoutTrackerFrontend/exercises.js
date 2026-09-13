@@ -1,8 +1,8 @@
-const URL = "https://localhost:7083/api/Exercises";
+const BASE_URL = "https://localhost:7083/api/Exercises";
 let editingId = null;
 
 async function load() {
-    const answer = await fetch(URL);
+    const answer = await fetch(BASE_URL);
     const data = await answer.json();
 
     const table = document.getElementById("exerciseTableBody");
@@ -24,7 +24,7 @@ async function load() {
 }
 
 async function save(event) {
-    event.preventDefault(); 
+    event.preventDefault();
 
     const itemInfo = {
         name: document.getElementById("exerciseName").value,
@@ -32,18 +32,15 @@ async function save(event) {
     };
 
     if (editingId === null) {
-
-        await fetch(URL, {
+        await fetch(BASE_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(itemInfo)
         });
-    } 
-    else {
-
+    } else {
         itemInfo.id = editingId;
 
-        await fetch(URL + "/" + editingId, {
+        await fetch(BASE_URL + "/" + editingId, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(itemInfo)
@@ -71,15 +68,13 @@ function editSelection(id, name, category) {
     document.getElementById("submitBtn").textContent = "Módosítás mentése";
 }
 
-
 async function deleteItem(id) {
-    await fetch(URL + "/" + id, {
+    await fetch(BASE_URL + "/" + id, {
         method: "DELETE"
     });
 
-    load(); 
+    load();
 }
 
-
 load();
-document.getElementById("exerciseForm").onsubmit = save;
+document.getElementById("exerciseForm").onsubmit = save;
